@@ -1,0 +1,5 @@
+-- DropForeignKey
+ALTER TABLE "Project" DROP CONSTRAINT "Project_companyId_fkey";
+
+-- AddForeignKey
+ALTER TABLE "Project" ADD CONSTRAINT "Project_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

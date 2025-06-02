@@ -1,43 +1,12 @@
-version: '3.8'
-
 services:
   postgres:
-    image: postgres:15
+    image: postgres:16
     restart: always
     environment:
       POSTGRES_USER: voltzx
       POSTGRES_PASSWORD: voltzx123
       POSTGRES_DB: voltzx_db
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
     ports:
       - '5432:5432'
 
-  api:
-    build: .
-    command: yarn start:dev
-    volumes:
-      - .:/app
-      - /app/node_modules
-    ports:
-      - '3000:3000'
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_URL: postgres://voltzx:voltzx123@postgres:5432/voltzx_db
-
-  prisma-studio:  # MOVIDO PARA DENTRO DE SERVICES
-    image: node:18
-    working_dir: /app
-    volumes:
-      - .:/app
-    command: npx prisma studio --port 5555
-    ports:
-      - "5555:5555"
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_URL: postgres://voltzx:voltzx123@postgres:5432/voltzx_db
-
-volumes:
-  postgres_data:
+ 

@@ -3,6 +3,7 @@
 /node_modules
 /build
 .env
+500MB/
 
 # Logs
 logs
